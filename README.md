@@ -2,6 +2,16 @@
 
 This package contains a function to compute the Empirical Bayes Factor for testing for the presence of random effects. 
 
+## Instalation
+
+```{r}
+library(devtools)
+install_github("Fabio-Vieira/EBF")
+
+#load the package
+library(EBF)
+```
+
 ## Example
 
 Run the code below for an example of how to prepare the estimates to pass to the function.
@@ -58,6 +68,10 @@ If you use this package in your research, please cite the paper below.
   year={2024}
 }
 ```
+
+## Issues
+
+This is a first version of this package, so it might have some bugs. If you find any, please feel free to report.
 
 ## Acknowledgements
 
