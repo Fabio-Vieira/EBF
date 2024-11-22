@@ -1,10 +1,10 @@
 # EBF
 
-This package contains a function to compute the Empirical Bayes Factor for testing for the presence of random effects. 
+This package contains a function to compute the Empirical Bayes Factor for testing for the presence of random effects.
 
 ## Instalation
 
-```{r}
+```R
 library(devtools)
 install_github("Fabio-Vieira/EBF")
 
@@ -18,7 +18,7 @@ Run the code below for an example of how to prepare the estimates to pass to the
 
 Don't forget to name the columns in the matrix with the random effects, those names will be used to tell you which values of the EBF correspond to which variables in the model.
 
-```{r}
+```R
 # Load required libraries
 library(rstanarm)
 library(dplyr)
@@ -55,12 +55,13 @@ tau <- posterior_samples_array[,,8]
 
 #Computing the EBF
 EBF(theta = b, sig = sig, tau = tau)
-``` 
+```
+
 ## Citation
 
 If you use this package in your research, please cite the paper below.
 
-```{r}
+```R
 @article{vieira2024vary,
   title={To Vary or Not To Vary: A Simple Empirical Bayes Factor for Testing Variance Components},
   author={Vieira, Fabio and Zhao, Hongwei and Mulder, Joris},
