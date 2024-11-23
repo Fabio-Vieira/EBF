@@ -73,14 +73,11 @@ EBF <- function(theta, sig, tau, logarithm = T){
   names(prior) <- names(posterior) <- random_effects
   for(i in 1:q){
     if(is.matrix(tau)){ # here we assume the user wants to approximate the integral in the denominator of the EBF
-      p <- as.numeric(nrow(tau))
+      p <- sapply(1:nrow(tau), function(x) mvtnorm::dmvnorm(x = rep(0, j),
+                                                            mean = rep(0, j),
+                                                            sigma = diag(tau[x,i], j),
+                                                            log = logarithm))
       out$samples <- nrow(tau)
-      for(h in 1:nrow(tau)){
-        p[h] <- mvtnorm::dmvnorm(x = rep(0, j),
-                                 mean = rep(0, j),
-                                 sigma = diag(tau[h,i], j),
-                                 log = logarithm)
-      }
       out$integral <- T
       prior[i] <- mean(p)
     } else {
