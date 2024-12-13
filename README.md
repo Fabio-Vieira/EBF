@@ -22,6 +22,7 @@ Don't forget to name the columns in the matrix with the random effects, those na
 # Load required libraries
 library(rstanarm)
 library(dplyr)
+library(EBF)
 
 # Check the structure of the mtcars dataset
 str(mtcars)
