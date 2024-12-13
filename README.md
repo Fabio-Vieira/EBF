@@ -22,6 +22,7 @@ Don't forget to name the columns in the matrix with the random effects, those na
 # Load required libraries
 library(rstanarm)
 library(dplyr)
+library(EBF)
 
 # Check the structure of the mtcars dataset
 str(mtcars)
@@ -51,7 +52,7 @@ posterior_samples_array[1:5, , ]
 b <- matrix(colMeans(posterior_samples_array[,,4:6]), ncol = 1)
 colnames(b) <- "cyl"
 sig <- list(cov(posterior_samples_array[,,4:6]))
-tau <- posterior_samples_array[,,8]
+tau <- matrix(posterior_samples_array[,,8])
 
 #Computing the EBF
 EBF(theta = b, sig = sig, tau = tau)
