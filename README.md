@@ -4,7 +4,7 @@ This package contains a function to compute the Empirical Bayes Factor for testi
 
 ## Instalation
 
-```R
+``` r
 library(devtools)
 install_github("Fabio-Vieira/EBF")
 
@@ -18,7 +18,20 @@ Run the code below for an example of how to prepare the estimates to pass to the
 
 Don't forget to name the columns in the matrix with the random effects, those names will be used to tell you which values of the EBF correspond to which variables in the model.
 
-```R
+From this example, the random intercept named **groupA** should display evidence of being a true random effect, whereas the random intercept named **groupB** should not.
+
+We fit the mode with an fixed intercept and random intercepts for groups A and B.
+
+$$
+\begin{gathered}
+y_{ij} = \beta_0 + u_{i} + v_{j} + \epsilon_{ij}, \\
+u_{i} \sim \mathcal{N}(0, \sigma_{u}^2), \\
+v_{j} \sim \mathcal{N}(0, \sigma_{v}^2), \\
+\epsilon_{ij} \sim \mathcal{N}(0, \sigma_e^2)
+\end{gathered}
+$$
+
+``` r
 #Loading the libraries
 library(EBF)
 library(rstanarm)
@@ -50,7 +63,7 @@ EBF(b, covb, sig)
 
 If you use this package in your research, please cite the paper below.
 
-```R
+``` r
 @article{vieira2024vary,
   title={To Vary or Not To Vary: A Simple Empirical Bayes Factor for Testing Variance Components},
   author={Vieira, Fabio and Zhao, Hongwei and Mulder, Joris},
