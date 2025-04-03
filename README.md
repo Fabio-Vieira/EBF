@@ -18,7 +18,7 @@ Run the code below for an example of how to prepare the estimates to pass to the
 
 Don't forget to name the columns in the matrix with the random effects, those names will be used to tell you which values of the EBF correspond to which variables in the model.
 
-We fit the mode with an fixed intercept and random intercepts for groups A and B.
+We simulated data from the model below. To see the parameters used in this simulation, check the file **/data-raw/example.R**.
 
 $$
 {\large
@@ -32,6 +32,8 @@ v_{j} \sim \mathcal{N}(0, \sigma_{v}^2), \\
 $$
 
 Where ${\large y_{ij}}$ is the response variable, ${\large \beta_0}$ the fixed intercept, ${\large u_{i}}$ is the random intercept for group A, ${\large v_{j}}$ the random intercept for group B and ${\large \epsilon_{ij}}$ is the error term.
+
+We fit the model using a fully Bayesian approach and extract the parameters needed to conduct the test. The goal of this example is to show the user how the parameters should be defined in the EBF function so the test is properly calculated.
 
 In this example, the random intercept for **group A** should display evidence of being a true random effect, whereas the random intercept for **group B** should not.
 
