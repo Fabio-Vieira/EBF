@@ -18,8 +18,6 @@ Run the code below for an example of how to prepare the estimates to pass to the
 
 Don't forget to name the columns in the matrix with the random effects, those names will be used to tell you which values of the EBF correspond to which variables in the model.
 
-From this example, the random intercept named **groupA** should display evidence of being a true random effect, whereas the random intercept named **groupB** should not.
-
 We fit the mode with an fixed intercept and random intercepts for groups A and B.
 
 $$
@@ -34,6 +32,8 @@ v_{j} \sim \mathcal{N}(0, \sigma_{v}^2), \\
 $$
 
 Where ${\large y_{ij}}$ is the response variable, ${\large \beta_0}$ the fixed intercept, ${\large u_{i}}$ is the random intercept for group A, ${\large v_{j}}$ the random intercept for group B and ${\large \epsilon_{ij}}$ is the error term.
+
+In this example, the random intercept for **group A** should display evidence of being a true random effect, whereas the random intercept for **group B** should not.
 
 ``` r
 #Loading the libraries
