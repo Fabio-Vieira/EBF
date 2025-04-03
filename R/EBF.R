@@ -7,48 +7,34 @@
 #'
 #' @return a vector with the EBFs
 #'
+#' @references
+#' Vieira, F., Zhao, H., & Mulder, J. (2024). To Vary or Not To Vary: A Simple Empirical Bayes Factor for Testing Variance Components. arXiv preprint arXiv:2410.14459.
+#'
+#' Vieira, F., Leenders, R., McFarland, D., & Mulder, J. (2024). A Bayesian actor-oriented multilevel relational event model with hypothesis testing procedures. Behaviormetrika, 51(1), 37-74.
+#'
 #' @examples
-#' # Install rstanarm if needed
-#' # install.packages("rstanarm")
 #'
-#' # Load required libraries
-#' library(rstanarm)
-#' library(dplyr)
 #' library(EBF)
+#' #Fitting the model
+#' library(rstanarm)
 #'
-#' # Check the structure of the mtcars dataset
-#' str(mtcars)
+#' data(example)
 #'
-#' # Convert 'cyl' to a factor since it's a grouping variable
-#' mtcars$cyl <- as.factor(mtcars$cyl)
+#' model <- stan_lmer(y ~ 1 + (1 | groupA) + (1 | groupB), data = example,
+#'                    chains = 1)
 #'
-#' # Fit a mixed-effects model with random intercepts for 'cyl'
-#' model <- stan_glmer(mpg ~ wt + hp + (1 | cyl),
-#'                     data = mtcars,
-#'                     prior_covariance = decov(1),
-#'                     chains = 1)
+#'posterior_samples_array <- as.data.frame(model)
 #'
-#' # Summary of the model
-#' summary(model)
+#' b <- data.frame(groupA = colMeans(posterior_samples_array[,paste0("b[(Intercept) groupA:", 1:10, "]")]), #group A
+#'                 groupB = colMeans(posterior_samples_array[,paste0("b[(Intercept) groupB:", 1:10, "]")]) #group B
+#' )
 #'
-#' # Extract posterior samples as an array
-#' posterior_samples_array <- as.array(model)
+#' covb <- list(groupA = cov(posterior_samples_array[,paste0("b[(Intercept) groupA:", 1:10, "]")]),
+#'              groupB = cov(posterior_samples_array[,paste0("b[(Intercept) groupB:", 1:10, "]")]))
 #'
-#' # View the structure of the posterior samples array
-#' str(posterior_samples_array)
+#'sig <- colMeans(posterior_samples_array[,c("Sigma[groupA:(Intercept),(Intercept)]","Sigma[groupB:(Intercept),(Intercept)]")])
 #'
-#' # Optionally, inspect the first few posterior samples for a specific parameter
-#' posterior_samples_array[1:5, , ]
-#'
-#' #Getting the parameters to run the EBF
-#' b <- matrix(colMeans(posterior_samples_array[,,4:6]), ncol = 1)
-#' colnames(b) <- "cyl"
-#' sig <- list(cov(posterior_samples_array[,,4:6]))
-#' tau <- matrix(posterior_samples_array[,,8])
-#'
-#' #Computing the EBF
-#' EBF(theta = b, sig = sig, tau = tau)
-#'
+#'EBF(b, covb, sig)
 #'
 #' @export
 EBF <- function(theta, sig, tau, logarithm = T){

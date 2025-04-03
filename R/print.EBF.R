@@ -8,14 +8,11 @@
 print.EBF <- function(x, ...){
   cat("----------------Empirical Bayes factor----------------")
   cat("\n")
-  cat("\n")
   if(x$integral){
     cat("EBF computed using", x$samples, "samples to approximate the denominator")
   }
   cat("\n")
-  cat("\n")
   print(x$EBF)
-  cat("\n")
   cat("\n")
   cat("Model contained", x$j, "groups and", x$q, "random effects.")
 }
