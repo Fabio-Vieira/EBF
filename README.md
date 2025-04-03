@@ -28,7 +28,7 @@ $$
 y_{ij} = \beta_0 + u_{i} + v_{j} + \epsilon_{ij}, \\
 u_{i} \sim \mathcal{N}(0, \sigma_{u}^2), \\
 v_{j} \sim \mathcal{N}(0, \sigma_{v}^2), \\
-\epsilon_{ij} \sim \mathcal{N}(0, \sigma_e^2)
+\epsilon_{ij} \sim \mathcal{N}(0, \sigma_\epsilon^2)
 \end{gathered}
 }
 $$
