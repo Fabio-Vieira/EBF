@@ -23,7 +23,7 @@ From this example, the random intercept named **groupA** should display evidence
 We fit the mode with an fixed intercept and random intercepts for groups A and B.
 
 $$
-{\Large
+{\large
 \begin{gathered}
 y_{ij} = \beta_0 + u_{i} + v_{j} + \epsilon_{ij}, \\
 u_{i} \sim \mathcal{N}(0, \sigma_{u}^2), \\
@@ -33,7 +33,7 @@ v_{j} \sim \mathcal{N}(0, \sigma_{v}^2), \\
 }
 $$
 
-Where ${\Large y_{ij}}$ is the response variable, ${\Large \beta_0}$ the fixed intercept, ${\Large u_{i}}$ is the random intercept for group A, ${\Large v_{j}}$ the random intercept for group B and ${\Large \epsilon_{ij}}$ is the error term.
+Where ${\large y_{ij}}$ is the response variable, ${\large \beta_0}$ the fixed intercept, ${\large u_{i}}$ is the random intercept for group A, ${\large v_{j}}$ the random intercept for group B and ${\large \epsilon_{ij}}$ is the error term.
 
 ``` r
 #Loading the libraries
