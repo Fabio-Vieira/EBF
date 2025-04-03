@@ -51,8 +51,12 @@ EBF(b, covb, sig)
 If you use this package in your research, please cite the paper below.
 
 ```R
-Vieira, F., Zhao, H., & Mulder, J. (2024). To Vary or Not To Vary: A Simple Empirical Bayes Factor for Testing Variance Components. arXiv preprint arXiv:2410.14459.
-Vieira, F., Leenders, R., McFarland, D., & Mulder, J. (2024). A Bayesian actor-oriented multilevel relational event model with hypothesis testing procedures. Behaviormetrika, 51(1), 37-74.
+@article{vieira2024vary,
+  title={To Vary or Not To Vary: A Simple Empirical Bayes Factor for Testing Variance Components},
+  author={Vieira, Fabio and Zhao, Hongwei and Mulder, Joris},
+  journal={arXiv preprint arXiv:2410.14459},
+  year={2024}
+}
 ```
 
 ## Issues
