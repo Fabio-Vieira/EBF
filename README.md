@@ -2,6 +2,17 @@
 
 This package contains a function to compute the Empirical Bayes Factor for testing for the presence of random effects.
 
+The linear mixed-effect model usually has the following form
+
+$$
+{\large
+\beging{gathered}
+\mathbf{y} = \mathbf{x} \mathbf{\beta} + \mathbf{z} \mathbf{b} + \mathbf{\epsilon} \\
+\mathbf{b} \sim \mathcal{N}(\mathbf{0}, \mathbf{\Sigma})
+\end{gathered}
+}
+$$
+
 ## Instalation
 
 ``` r
@@ -77,6 +88,12 @@ If you use this package in your research, please cite the paper below.
   year={2024}
 }
 ```
+
+## References
+
+Vieira, F., Zhao, H., & Mulder, J. (2024). **To Vary or Not To Vary: A Simple Empirical Bayes Factor for Testing Variance Components**. arXiv preprint arXiv:2410.14459.
+
+Vieira, F., Leenders, R., McFarland, D., & Mulder, J. (2024). **A Bayesian actor-oriented multilevel relational event model with hypothesis testing procedures**. Behaviormetrika, 51(1), 37-74.
 
 ## Issues
 
