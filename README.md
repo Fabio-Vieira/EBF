@@ -115,4 +115,4 @@ This is a first version of this package, so it might have some bugs. If you find
 
 ## Acknowledgements
 
-The development of this package was supported by a Vidi Grant (452-17-006) awarded by the Netherlands Organization for Scientific Research (NWO) Grant.
+The development of this package was supported by a **Vidi Grant** (452-17-006) awarded by the **Netherlands Organization for Scientific Research** (NWO) Grant.
