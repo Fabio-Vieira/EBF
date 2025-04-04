@@ -1,6 +1,6 @@
 # EBF
 
-This package contains a function to compute the Empirical Bayes Factor for testing for the presence of random effects.
+This package contains a function to compute the Empirical Bayes Factor (EBF) for testing for the presence of random effects.
 
 The linear mixed-effect model usually has the following form
 
