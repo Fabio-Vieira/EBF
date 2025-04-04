@@ -6,12 +6,26 @@ The linear mixed-effect model usually has the following form
 
 $$
 {\large
-\beging{gathered}
+\begin{gathered}
 \mathbf{y} = \mathbf{x} \mathbf{\beta} + \mathbf{z} \mathbf{b} + \mathbf{\epsilon} \\
 \mathbf{b} \sim \mathcal{N}(\mathbf{0}, \mathbf{\Sigma})
 \end{gathered}
 }
 $$
+
+Where
+
+-   ${\large \mathbf{y}}$ is the response variable
+-   ${\large \mathbf{x}}$ is a matrix with fixed effect variables
+-   ${\large \mathbf{z}}$ is a matrix with random effect variables
+-   ${\large \mathbf{\beta}}$ is a vector of fixed effect parameters
+-   ${\large \mathbf{b}}$ is a vector of normally distributed random effect parameters
+-   ${\large \mathbf{\epsilon}}$ is a vector of error terms (i.e. mean zero and constant variance)
+-   ${\large \mathbf{\Sigma}}$ is the covariance matrix of the random effect.
+
+The **EBF** seeks to answer whether a particular covariable should be included only in ${\large \mathbf{x}}$ or in ${\large \mathbf{x}}$ and ${\large \mathbf{z}}$ simultaneously.
+
+This test was initially proposed by Vieira et al. (2024a) and further developed by Vieira et al. (2024b).
 
 ## Instalation
 
@@ -91,9 +105,9 @@ If you use this package in your research, please cite the paper below.
 
 ## References
 
-Vieira, F., Zhao, H., & Mulder, J. (2024). **To Vary or Not To Vary: A Simple Empirical Bayes Factor for Testing Variance Components**. arXiv preprint arXiv:2410.14459.
+Vieira, F., Zhao, H., & Mulder, J. (2024b). **To Vary or Not To Vary: A Simple Empirical Bayes Factor for Testing Variance Components**. arXiv preprint arXiv:2410.14459.
 
-Vieira, F., Leenders, R., McFarland, D., & Mulder, J. (2024). **A Bayesian actor-oriented multilevel relational event model with hypothesis testing procedures**. Behaviormetrika, 51(1), 37-74.
+Vieira, F., Leenders, R., McFarland, D., & Mulder, J. (2024a). **A Bayesian actor-oriented multilevel relational event model with hypothesis testing procedures**. Behaviormetrika, 51(1), 37-74.
 
 ## Issues
 
