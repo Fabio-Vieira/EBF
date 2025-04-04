@@ -25,7 +25,7 @@ Where
 
 The **EBF** seeks to answer whether a particular covariable should be included only in ${\large \mathbf{x}}$ or in ${\large \mathbf{x}}$ and ${\large \mathbf{z}}$ simultaneously.
 
-This test was initially proposed by Vieira et al. (2024a) and further developed by Vieira et al. (2024b).
+This test was initially proposed by Vieira et al. (2024a) in the context of multilevel relational event models and further developed by Vieira et al. (2024b) more generally to all classes of models containing random effects.
 
 ## Instalation
 
