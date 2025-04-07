@@ -1,8 +1,12 @@
-#' @title EBF: A function to compute the Empirical Bayes Factor from model estimates
+#' @title EBF: A function to compute Empirical Bayes Factors.
 #'
-#' @param theta a matrix with the random effects estimates (name the columns, so the vector of EBFs will also be named)
-#' @param sig a list containing the covariance matrix of the random effect, the list should have the same length as the number of random effects
-#' @param tau a vector with the estimates of the variance of the random effects
+#' @description
+#' A function to compute the Empirical Bayes Factor (Vieira et al., 2024a, 2024b) from the random effects estimates, the random effects error (posterior) covariance matrix, and the estimated random effects variance.
+#'
+#'
+#' @param theta a vector of random effects estimates, or a matrix with multiple the random effects estimates (name the columns, so the vector of EBFs will also be named).
+#' @param var	 the error (posterior) covariance matrix of the random effects, or a list of covariance matrices of multiple random effects.
+#' @param Sigma an estimate of a variance of the random effects, or a vector with the estimates of the variance of the random effects.
 #' @param logarithm a logical parameter that indicates whether to compute the EBF in the log scale or not
 #'
 #' @return a vector with the EBFs
@@ -37,7 +41,13 @@
 #'EBF(b, covb, sig)
 #'
 #' @export
-EBF <- function(theta, sig, tau, logarithm = T){
+EBF <- function(theta, var, Sigma, logarithm = T){
+  #Creating a conditional to check if we have one random effect
+  if(dim(theta)[2] != 1){
+    if(is.matrix(var)){
+      stop("There's more than one random effect. Their error matrix should be a list.")
+    }
+  }
   #Creating output
   out <- vector("list")
   #Number of random effects
@@ -59,31 +69,38 @@ EBF <- function(theta, sig, tau, logarithm = T){
   #Naming the vectors of prior and posterior
   names(prior) <- names(posterior) <- random_effects
   for(i in 1:q){
-    if(is.matrix(tau)){ # here we assume the user wants to approximate the integral in the denominator of the EBF
-      p <- sapply(1:nrow(tau), function(x) mvtnorm::dmvnorm(x = rep(0, j),
+    if(is.matrix(Sigma)){ # here we assume the user wants to approximate the integral in the denominator of the EBF
+      p <- sapply(1:nrow(Sigma), function(x) mvtnorm::dmvnorm(x = rep(0, j),
                                                             mean = rep(0, j),
-                                                            sigma = diag(tau[x,i], j),
+                                                            sigma = diag(Sigma[x,i], j),
                                                             log = logarithm))
-      out$samples <- nrow(tau)
+      out$samples <- nrow(Sigma)
       out$integral <- T
       prior[i] <- mean(p)
     } else {
       out$integral <- F
       prior[i] <- mvtnorm::dmvnorm(x = rep(0, j),
                                    mean = rep(0, j),
-                                   sigma = diag(tau[i], j),
+                                   sigma = diag(Sigma[i], j),
                                    log = logarithm)
     }
-    posterior[i] <- mvtnorm::dmvnorm(x = rep(0, j),
-                                     mean = theta[,i],
-                                     sigma = sig[[i]],
-                                     log = logarithm)
+    if(is.matrix(var)){
+      posterior[i] <- mvtnorm::dmvnorm(x = rep(0, j),
+                                       mean = theta[,i],
+                                       sigma = var,
+                                       log = logarithm)
+    } else {
+      posterior[i] <- mvtnorm::dmvnorm(x = rep(0, j),
+                                       mean = theta[,i],
+                                       sigma = var[[i]],
+                                       log = logarithm)
+    }
   }
   out$posterior <- posterior
   out$prior <- prior
   out$params <- list(theta = theta,
-                     sigma = sig,
-                     tau = tau)
+                     var = var,
+                     Sigma = Sigma)
   out$q <- q
   out$j <- j
   if(logarithm){

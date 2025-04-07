@@ -2,16 +2,16 @@
 % Please edit documentation in R/EBF.R
 \name{EBF}
 \alias{EBF}
-\title{EBF: A function to compute the Empirical Bayes Factor from model estimates}
+\title{EBF: A function to compute Empirical Bayes Factors.}
 \usage{
-EBF(theta, sig, tau, logarithm = T)
+EBF(theta, var, Sigma, logarithm = T)
 }
 \arguments{
-\item{theta}{a matrix with the random effects estimates (name the columns, so the vector of EBFs will also be named)}
+\item{theta}{a vector of random effects estimates, or a matrix with multiple the random effects estimates (name the columns, so the vector of EBFs will also be named).}
 
-\item{sig}{a list containing the covariance matrix of the random effect, the list should have the same length as the number of random effects}
+\item{var}{the error (posterior) covariance matrix of the random effects, or a list of covariance matrices of multiple random effects.}
 
-\item{tau}{a vector with the estimates of the variance of the random effects}
+\item{Sigma}{an estimate of a variance of the random effects, or a vector with the estimates of the variance of the random effects.}
 
 \item{logarithm}{a logical parameter that indicates whether to compute the EBF in the log scale or not}
 }
@@ -19,7 +19,7 @@ EBF(theta, sig, tau, logarithm = T)
 a vector with the EBFs
 }
 \description{
-EBF: A function to compute the Empirical Bayes Factor from model estimates
+A function to compute the Empirical Bayes Factor (Vieira et al., 2024a, 2024b) from the random effects estimates, the random effects error (posterior) covariance matrix, and the estimated random effects variance.
 }
 \examples{
 
